@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --purple: #5b21b6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,3 +20,100 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.titlteWrapper {
+  color: var(--purple);
+  font-weight: 500;
+}
+
+
+/* Nav Bar Start */
+
+.navWrapper {
+  border-bottom: 1px solid #f5f3ff;
+}
+
+/* Nav Bar End */
+
+/* Product Card Start */
+
+.productCardWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1.25rem;
+}
+
+.productCard {
+  width: 33.33%;
+}
+
+.productCard img {
+  object-fit: contain;
+  transform: scale(0.8);
+  transition: all .3s;
+}
+
+.productCard img:hover {
+  transform: scale(1);
+}
+
+.cardWrap {
+  padding: 25px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.productImageWrap {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #f5f3ff;
+}
+
+.productCardBody {
+  padding-top: 20px;
+  position: relative;
+}
+
+.productCardBody h4 {
+  font-size: 24px;
+}
+
+.productCardBody p {
+  font-size: 1.125rem;
+  color: #6c757d;
+}
+
+.priceTag {
+  position: absolute;
+  right: 0;
+  bottom: 25px;
+  padding: 10px;
+  background: #5a21b51a;
+  width: 75px;
+  text-align: right;
+}
+
+.priceTag::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 22px solid transparent;
+  border-left-color: #fff;
+}
+
+.priceTag span {
+  color: var(--purple);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.currencySymbol {
+  padding-right: 5px;
+}
+
+.priceAmount {
+  letter-spacing: 1px;
+}
+
+/* Product Caed End */
