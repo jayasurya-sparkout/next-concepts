@@ -117,3 +117,115 @@ body {
 }
 
 /* Product Caed End */
+
+/* Poduct Detail Popup Start */
+
+.ProductDetailPopupWrap {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  transition: all .3s;
+}
+
+.ProductDetailPopupWrap.close {
+  top: -100%;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.ProductDetailPopupWrap.open {
+  top: 0%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.proudctDetailPopupWrap {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+  max-width: 800px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.left, .right {
+  width: 50%;
+}
+
+.cloeBtnWrap, .right .button button {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  display: flex;  
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--purple);
+  transition: all .3s;
+}
+
+.cloeBtnWrap span, .right .button button {
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.cloeBtnWrap:hover, .right .button button:hover {
+  background: var(--purple);
+  color: #fff;
+}
+
+.cloeBtnWrap svg , .right .button button{
+  transition : all .3s;
+}
+
+.cloeBtnWrap:hover svg, .right .button button:hover svg {
+  fill: #fff;
+}
+
+.quantity, .size {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 100%;
+  width: calc(100% - 80%);
+}
+
+.size {
+  width: calc(100% - 25%);
+}
+
+.quantityWrap {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.quantity input, .size select {
+  padding: 10px;
+  border: 1px solid #f5f3ff;
+  border-radius: 5px;
+  height: 100%;
+  background: none;
+}
+
+.right .button {
+  margin-top: 10px;
+}
+
+/* Product Detail Popup End */
