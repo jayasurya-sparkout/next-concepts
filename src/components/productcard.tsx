@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { StaticImageData } from "next/image";
 
 type ProductData = {
     src: string;
@@ -8,6 +9,7 @@ type ProductData = {
     title: string;
     description: string;
     price: number;
+    thumbnails: (string | StaticImageData)[];
 };
 
 type Props = {
@@ -16,18 +18,13 @@ type Props = {
 };
 
 export const ProductCard = ({ productData, onOpenPopup }: Props) => {
-    const [countClick, setCountClick] = useState(0);
 
     function handleClick() {
-        console.log("Increment like count");
-        console.log("Product Data:", productData);
         onOpenPopup(productData);
-        setCountClick(prev => prev + 1);
     }
 
     return (
         <div onClick={handleClick} className="w-72 productCard p-5">
-            <h2> State value: {countClick} </h2>
             <div className="cardWrap shadow-lg">
                 <div className="productImageWrap">
                     <img src={productData.src} alt={productData.alt} />

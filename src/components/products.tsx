@@ -20,6 +20,7 @@ type ProductData = {
     title: string;
     description: string;
     price: number;
+    thumbnails: (StaticImageData | string)[];
 };
 
 export const Products = () => {
@@ -27,14 +28,14 @@ export const Products = () => {
     const [selectedProduct, setSelectedProduct] = useState<ProductData | null>(null);
 
     const productsData: ProductData[] = [
-        { src: angyDog, alt: "Dog 1", title: "Angry Dog", description: "An angry dog", price: 10 },
-        { src: scaredDog, alt: "Dog 2", title: "Scared Dog", description: "A scared dog", price: 12 },
-        { src: droller, alt: "Dog 3", title: "Droller", description: "A droller dog", price: 15 },
-        { src: fashion, alt: "Dog 4", title: "Fashionista Dog", description: "A Fashionista  dog", price: 8 },
-        { src: player, alt: "Dog 4", title: "player Dog", description: "A player dog", price: 48 },
-        { src: pee, alt: "Dog 4", title: "pee Dog", description: "A pee dog", price: 38 },
-        { src: unicorn, alt: "Dog 4", title: "unicorn Dog", description: "A unicorn dog", price: 28 },
-        { src: wagger, alt: "Dog 4", title: "wagger Dog", description: "A wagger dog", price: 18 },
+        { src: angyDog, alt: "Dog 1", title: "Angry Dog", description: "An angry dog", price: 10, thumbnails: [angyDog, scaredDog, wagger] },
+        { src: scaredDog, alt: "Dog 2", title: "Scared Dog", description: "A scared dog", price: 12, thumbnails: [angyDog, scaredDog, wagger] },
+        { src: droller, alt: "Dog 3", title: "Droller", description: "A droller dog", price: 15, thumbnails: [angyDog, scaredDog] },
+        { src: fashion, alt: "Dog 4", title: "Fashionista Dog", description: "A Fashionista  dog", price: 8, thumbnails: [angyDog, scaredDog] },
+        { src: player, alt: "Dog 4", title: "player Dog", description: "A player dog", price: 48, thumbnails: [angyDog, scaredDog] },
+        { src: pee, alt: "Dog 4", title: "pee Dog", description: "A pee dog", price: 38, thumbnails: [angyDog, scaredDog] },
+        { src: unicorn, alt: "Dog 4", title: "unicorn Dog", description: "A unicorn dog", price: 28, thumbnails: [angyDog, scaredDog] },
+        { src: wagger, alt: "Dog 4", title: "wagger Dog", description: "A wagger dog", price: 18, thumbnails: [angyDog, scaredDog] },
     ];
 
     const handleOpenPopup = (product: ProductData) => {
@@ -57,20 +58,22 @@ export const Products = () => {
                         alt: productData.alt,
                         title: productData.title,
                         description: productData.description,
-                        price: productData.price
+                        price: productData.price,
+                        thumbnails: productData.thumbnails,
                     }}
                     onOpenPopup={handleOpenPopup}
                 />
             ))}
 
-            <div className={`ProductDetailPopupWrap ${isOpen && selectedProduct ? 'open' : 'close'}`} onClick={handleClosePopup}>
+            <div className={`ProductDetailPopupWrap ${isOpen && selectedProduct ? 'open' : 'close'}`}>
                 {isOpen && selectedProduct && (
                     <ProductDetailPopup 
                         img={typeof selectedProduct.src === 'string' ? selectedProduct.src : selectedProduct.src.src} 
                         title={selectedProduct.title} 
-                        description={selectedProduct.description} 
+                        description={selectedProduct.description}   
                         price={selectedProduct.price} 
                         onOpenPopup={handleClosePopup}
+                        thumbnails={selectedProduct.thumbnails.map(thumbnail => typeof thumbnail === 'string' ? thumbnail : thumbnail.src)}
                     />
                 )}
             </div>

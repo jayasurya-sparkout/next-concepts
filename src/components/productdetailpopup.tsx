@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { FaLongArrowAltLeft, FaShoppingCart } from "react-icons/fa";
+import { FaLongArrowAltLeft, FaLongArrowAltRight, FaShoppingCart } from "react-icons/fa";
 
 type Props = {
     img: string;
@@ -9,19 +9,46 @@ type Props = {
     description: string;
     price: number;
     onOpenPopup: () => void;
+    thumbnails: string[];
 }
 
 export const ProductDetailPopup = (props: Props) => {
+
+    const [selectedThumbnail, setSelectedThumbnail] = useState(props.thumbnails[0]);
+
     function handleClose() {
         props.onOpenPopup();
     }
+
+    function handleThumbnailClick(event: React.MouseEvent<HTMLDivElement>, thumbnail: string) {
+        setSelectedThumbnail(thumbnail);
+        console.log("Thumbnail clicked:", thumbnail);
+        console.log("Coordinates:", { x: event.clientX, y: event.clientY });
+    }    
 
     return (
         <div className="wrapper">
             <div className="proudctDetailPopup">
                 <div className="proudctDetailPopupWrap">
                     <div className="left">
-                        <img src={props.img} alt={props.title} />
+                        <div className="imageWrap">
+                            <img src={props.img} alt={props.title} />
+                        </div>
+                        <div className="thumbnailSwiper">
+                            <div className="arrowLeft arrow">
+                                <FaLongArrowAltLeft color="#fff" fontSize={14} />
+                            </div>
+                            <div className="thumbnailWrap">
+                                {props.thumbnails.map((thumbnail, index) => (
+                                    <div className="thumbnailImageWrap" key={index} onClick={(event) => handleThumbnailClick(event, thumbnail)}>
+                                        <img key={index} src={thumbnail} alt={props.title} />
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="arrowRight arrow" onClick={(event) => handleThumbnailClick(event, props.thumbnails[0])}>
+                                <FaLongArrowAltRight color="#fff" fontSize={14} />
+                            </div>
+                        </div>
                     </div>
                     <div className="right">
                         <div className="cloeBtnWrap" onClick={handleClose}>
@@ -31,9 +58,9 @@ export const ProductDetailPopup = (props: Props) => {
                             <span>Back To All Products</span>
                         </div>
                         <div>
-                            <h3>{props.title}</h3>
-                            <p>{props.description}</p>
-                            <div className="price">${props.price}</div>
+                            <h3 className="pt-3 title">{props.title}</h3>
+                            <p className="desc py-3">{props.description}</p>
+                            <div className="price pb-3">${props.price}</div>
                         </div>
                         <div>
                             <div className="quantityWrap">

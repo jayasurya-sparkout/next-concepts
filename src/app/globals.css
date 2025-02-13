@@ -148,7 +148,6 @@ body {
 .proudctDetailPopupWrap {
   display: flex;
   flex-wrap: nowrap;
-  align-items: center;
   justify-content: center;
   width: 80%;
   margin: auto;
@@ -161,6 +160,31 @@ body {
 
 .left, .right {
   width: 50%;
+  overflow: hidden;
+}
+
+.proudctDetailPopupWrap .right {
+  padding-top: 30px;
+}
+
+
+.right .title {
+  font-size: 30px;
+  color: var(--purple);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.right .desc {
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.right .price {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--purple);
 }
 
 .cloeBtnWrap, .right .button button {
@@ -218,7 +242,7 @@ body {
 
 .quantity input, .size select {
   padding: 10px;
-  border: 1px solid #f5f3ff;
+  border: 1px solid #828186;
   border-radius: 5px;
   height: 100%;
   background: none;
@@ -226,6 +250,53 @@ body {
 
 .right .button {
   margin-top: 10px;
+}
+
+.thumbnailWrap {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.thumbnailImageWrap {
+  max-width: 50%;
+  min-width: 50%;
+  position: relative;
+}
+
+.thumbnailSwiper {
+  position: relative;
+  overflow: hidden;
+}
+
+.thumbnailSwiper .arrow {
+  position: absolute;
+  top: -100%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  background: #5a21b580;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 9;
+  border-radius: 10%;
+  transition: all .3s;
+}
+
+.thumbnailSwiper .arrow:hover {
+  background: var(--purple);
+}
+
+.thumbnailSwiper .arrow.arrowLeft  {
+  left: 20px;
+}
+
+.thumbnailSwiper .arrow.arrowRight {
+  right: 20px;
+}
+
+.thumbnailSwiper:hover .arrow {
+  top: 50%;
 }
 
 /* Product Detail Popup End */
