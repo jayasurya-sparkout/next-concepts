@@ -148,6 +148,7 @@ body {
 .proudctDetailPopupWrap {
   display: flex;
   flex-wrap: nowrap;
+  gap: 20px;
   justify-content: center;
   width: 80%;
   margin: auto;

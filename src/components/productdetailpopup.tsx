@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { FaLongArrowAltLeft, FaLongArrowAltRight, FaShoppingCart } from "react-icons/fa";
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 type Props = {
     img: string;
@@ -34,7 +37,7 @@ export const ProductDetailPopup = (props: Props) => {
                         <div className="imageWrap">
                             <img src={props.img} alt={props.title} />
                         </div>
-                        <div className="thumbnailSwiper">
+                        {/* <div className="thumbnailSwiper">
                             <div className="arrowLeft arrow">
                                 <FaLongArrowAltLeft color="#fff" fontSize={14} />
                             </div>
@@ -48,7 +51,25 @@ export const ProductDetailPopup = (props: Props) => {
                             <div className="arrowRight arrow" onClick={(event) => handleThumbnailClick(event, props.thumbnails[0])}>
                                 <FaLongArrowAltRight color="#fff" fontSize={14} />
                             </div>
-                        </div>
+                        </div> */}
+                        <Swiper
+                            modules={[Autoplay]}
+                            autoplay={{
+                                delay: 2000,
+                                disableOnInteraction: true,
+                            }}
+                            loop={true}
+                            spaceBetween={50}
+                            slidesPerView={2}
+                            onSlideChange={() => console.log('slide change')}
+                            onSwiper={(swiper) => console.log(swiper)}
+                            >
+                            {props.thumbnails.map((thumbnail, index) => (
+                                <SwiperSlide key={index}>
+                                    <img key={index} src={thumbnail} alt={props.title} />
+                                </SwiperSlide>
+                            ))} 
+                        </Swiper>
                     </div>
                     <div className="right">
                         <div className="cloeBtnWrap" onClick={handleClose}>
